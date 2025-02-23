@@ -1,13 +1,15 @@
+@import url("https://v1.fontapi.ir/css/Estedad");
 @import "tailwindcss";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Estedad, monospace;
 }
 
 body {
-  background-attachment: #141414;
+  background-color: #141414;
   color: #f4f4f5;
 }
 
