@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-attachment: #141414;
+  color: #f4f4f5;
+}
+
+/* color second : #2cb67d */
