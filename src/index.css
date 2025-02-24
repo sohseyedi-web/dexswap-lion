@@ -1,5 +1,7 @@
 @import url("https://v1.fontapi.ir/css/Estedad");
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   margin: 0;
