@@ -1,0 +1,47 @@
+import ButtonAction from "@/ui/ButtonAction";
+import { TbWallet } from "react-icons/tb";
+import { SiRobotframework } from "react-icons/si";
+import { Link } from "react-router-dom";
+import { RiUserLine } from "react-icons/ri";
+import { motion } from "framer-motion";
+
+const Navbar = () => {
+  const isLogin = false;
+
+  return (
+    <motion.nav
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed w-full top-0 p-6 right-0 flex items-center justify-between"
+      dir="rtl"
+    >
+      <div className="flex items-center">
+        <SiRobotframework size={38} className="text-[#2cb67d] ml-10" />
+        <div className="items-center gap-x-6 md:flex hidden">
+          <Link to={"/"} className="text-lg font-semibold text-[#2cb67d]">
+            صفحه اصلی
+          </Link>
+          <Link to={"/"} className="text-lg font-semibold text-zinc-300">
+            توکن ها
+          </Link>
+          <Link to={"/"} className="text-lg font-semibold text-zinc-300">
+            ابزار ها
+          </Link>
+        </div>
+      </div>
+      <ButtonAction
+        className="w-[180px] h-[50px] md:block hidden"
+        child="اتصال به کیف پول"
+        loading={false}
+      />
+      <ButtonAction
+        className="w-[45px] h-[45px] md:hidden flex items-center justify-center"
+        child={isLogin ? <RiUserLine size={30} /> : <TbWallet size={30} />}
+        loading={false}
+      />
+    </motion.nav>
+  );
+};
+
+export default Navbar;
