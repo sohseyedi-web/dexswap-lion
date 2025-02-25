@@ -10,6 +10,7 @@ const Sidebar = () => {
     <>
       <Back />
       <aside
+        dir="rtl"
         className={`${
           active ? "right-0 top-0" : "-right-64 top-0"
         } fixed z-40 w-[240px] bg-[#212121] h-screen border-l-2 border-zinc-800 py-6 px-4 space-y-3 transition-all duration-300`}
