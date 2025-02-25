@@ -4,7 +4,6 @@ import { SiRobotframework } from "react-icons/si";
 import { RiUserLine, RiArrowRightWideFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useResponsiveStore } from "@/store/useResponsive";
-import Sidebar from "./Sidebar";
 import { Customlink } from "@/ui/CustomLink";
 
 const Navbar = () => {
@@ -43,7 +42,6 @@ const Navbar = () => {
         child={isLogin ? <RiUserLine size={30} /> : <TbWallet size={30} />}
         loading={false}
       />
-      <Sidebar />
     </motion.nav>
   );
 };
