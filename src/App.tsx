@@ -4,6 +4,7 @@ import Navbar from "./features/Navbar";
 import SupportIcon from "./ui/SupportIcon";
 import { useResponsiveStore } from "./store/useResponsive";
 import { useEffect } from "react";
+import Sidebar from "./features/Sidebar";
 
 function App() {
   const { updateMedia } = useResponsiveStore();
@@ -16,6 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <Sidebar />
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
