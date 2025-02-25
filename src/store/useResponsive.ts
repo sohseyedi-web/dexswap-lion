@@ -7,7 +7,7 @@ type ResponsiveState = {
 };
 
 export const useResponsiveStore = create<ResponsiveState>((set) => ({
-  active: typeof window !== "undefined" ? window.innerWidth > 1024 : false,
+  active: false,
   setActive: (active) => set({ active }),
-  updateMedia: () => set({ active: window.innerWidth > 1024 }),
+  updateMedia: () => set({ active: window.innerWidth > 1024 && false }),
 }));
