@@ -2,10 +2,14 @@ import ButtonAction from "@/ui/ButtonAction";
 import { TbWallet } from "react-icons/tb";
 import { SiRobotframework } from "react-icons/si";
 import { Link } from "react-router-dom";
-import { RiUserLine } from "react-icons/ri";
+import { RiUserLine, RiArrowRightWideFill } from "react-icons/ri";
 import { motion } from "framer-motion";
+import { useResponsiveStore } from "@/store/useResponsive";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
+  const { setActive } = useResponsiveStore();
+
   const isLogin = false;
 
   return (
@@ -17,6 +21,11 @@ const Navbar = () => {
       dir="rtl"
     >
       <div className="flex items-center">
+        <RiArrowRightWideFill
+          onClick={() => setActive(true)}
+          size={38}
+          className="text-[#2cb67d] cursor-pointer md:hidden block"
+        />
         <SiRobotframework size={38} className="text-[#2cb67d] ml-10" />
         <div className="items-center gap-x-6 md:flex hidden">
           <Link to={"/"} className="text-lg font-semibold text-[#2cb67d]">
@@ -40,6 +49,7 @@ const Navbar = () => {
         child={isLogin ? <RiUserLine size={30} /> : <TbWallet size={30} />}
         loading={false}
       />
+      <Sidebar/>
     </motion.nav>
   );
 };
