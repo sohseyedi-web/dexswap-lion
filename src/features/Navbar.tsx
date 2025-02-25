@@ -30,6 +30,7 @@ const Navbar = () => {
           <Customlink name="صفحه اصلی" to="/" />
           <Customlink name="توکن ها" to="/a" />
           <Customlink name="ابزار ها" to="/b" />
+          <Customlink name="پشتیبانی" to="/c" />
         </div>
       </div>
       <ButtonAction

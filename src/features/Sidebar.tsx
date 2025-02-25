@@ -23,15 +23,7 @@ const Sidebar = () => {
           <Customlink name="صفحه اصلی" to="/"/>
           <Customlink name="توکن ها" to="/a"/>
           <Customlink name="ابزار ها" to="/b"/>
-          {/* <Link to={"/"} className="text-lg font-semibold text-[#2cb67d]">
-            صفحه اصلی
-          </Link>
-          <Link to={"/"} className="text-lg font-semibold text-zinc-300">
-            توکن ها
-          </Link>
-          <Link to={"/"} className="text-lg font-semibold text-zinc-300">
-            ابزار ها
-          </Link> */}
+          <Customlink name="پشتیبانی" to="/c"/>
         </ul>
       </aside>
     </>
