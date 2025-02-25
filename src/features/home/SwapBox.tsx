@@ -2,6 +2,7 @@ import { RiSettings5Fill } from "react-icons/ri";
 import { TbRefresh } from "react-icons/tb";
 import { motion } from "framer-motion";
 import ButtonAction from "@/ui/ButtonAction";
+import FieldToken from "./FieldToken";
 
 const SwapBox = () => {
   return (
@@ -25,14 +26,8 @@ const SwapBox = () => {
         </div>
       </header>
       <form action="" className="space-y-4 flex-col">
-        <input
-          type="text"
-          className="w-full h-[55px] outline-none bg-transparent border rounded-2xl focus:border-zinc-600 transition-all duration-300 border-zinc-800 focus:bg-[#161616] px-3 text-lg "
-        />
-        <input
-          type="text"
-          className="w-full h-[55px] outline-none bg-transparent border rounded-2xl focus:border-zinc-600 transition-all duration-300 border-zinc-800 focus:bg-[#161616] px-3 text-lg "
-        />
+        <FieldToken title="انتخاب شده"/>
+        <FieldToken title="دریافتی"/>
         <ButtonAction
           loading={false}
           className="w-full h-[55px]"
