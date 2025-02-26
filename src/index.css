@@ -16,3 +16,12 @@ body {
 }
 
 /* color second : #2cb67d */
+
+.scroll::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #2cb67d;
+  border-radius: 0.1rem;
+}
