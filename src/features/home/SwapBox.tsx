@@ -3,8 +3,11 @@ import { TbRefresh } from "react-icons/tb";
 import { motion } from "framer-motion";
 import ButtonAction from "@/ui/ButtonAction";
 import FieldToken from "./FieldToken";
+import { useTokenStore } from "@/store/useTokenStore";
 
 const SwapBox = () => {
+  const { token1, token2 } = useTokenStore();
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -26,8 +29,8 @@ const SwapBox = () => {
         </div>
       </header>
       <form action="" className="space-y-4 flex-col">
-        <FieldToken title="انتخابی"/>
-        <FieldToken title="تبدیلی"/>
+        <FieldToken title="انتخابی" number={1} token={token1} />
+        <FieldToken title="تبدیلی" number={2} token={token2} />
         <ButtonAction
           loading={false}
           className="w-full h-[55px]"
