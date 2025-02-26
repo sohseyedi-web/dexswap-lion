@@ -26,8 +26,8 @@ const SwapBox = () => {
         </div>
       </header>
       <form action="" className="space-y-4 flex-col">
-        <FieldToken title="انتخاب شده"/>
-        <FieldToken title="دریافتی"/>
+        <FieldToken title="انتخابی"/>
+        <FieldToken title="تبدیلی"/>
         <ButtonAction
           loading={false}
           className="w-full h-[55px]"
