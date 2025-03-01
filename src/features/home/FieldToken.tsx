@@ -52,7 +52,11 @@ const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
           className="w-full md:text-lg text-base md:h-[50px] h-[40px] rounded-2xl bg-transparent outline-none border border-zinc-700 px-3"
         />
       </div>
-      <p className="text-sm text-zinc-400">
+      <p
+        className={`${
+          token?._id ? "visible" : "invisible"
+        } text-sm text-zinc-400 transition-all`}
+      >
         قیمت :{" "}
         <span className="font-semibold text-[#2cb67d] md:ml-2">10.2 $ </span>{" "}
         معادل{" "}
