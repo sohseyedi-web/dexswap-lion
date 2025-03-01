@@ -1,12 +1,14 @@
-import tokens from "@/constant/tokenList";
 import { RiSearchLine } from "react-icons/ri";
 import TokenItem from "./TokenItem";
 import { useTokenStore } from "@/store/useTokenStore";
 import { useState } from "react";
 import { TokenInterFace } from "@/types";
+import { useTranslation } from "react-i18next";
+import tokens from "@/constant/tokenList";
 
 const TokenListBox = ({ onClose }: { onClose: () => void }) => {
   const { updateItemData } = useTokenStore();
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
 
   const onChoiceToken = (value: TokenInterFace) => {
@@ -14,9 +16,12 @@ const TokenListBox = ({ onClose }: { onClose: () => void }) => {
     onClose();
   };
 
-  const filterTokens = tokens.filter(
-    (token) => token.name.includes(search) || token.symbol.includes(search)
-  );
+  const filterTokens = tokens.filter((token) => {
+    const translatedName = t(token.name);
+    const searchLower = search.toLowerCase();
+
+    return translatedName.includes(searchLower);
+  });
 
   return (
     <section className="space-y-4">
@@ -36,9 +41,15 @@ const TokenListBox = ({ onClose }: { onClose: () => void }) => {
       <hr className="border-zinc-700" />
       {/* tokens list */}
       <div className="h-[200px] overflow-y-auto scroll">
-        {filterTokens.map((token) => (
-          <TokenItem key={token._id} token={token} onChoice={onChoiceToken} />
-        ))}
+        {filterTokens?.length ? (
+          filterTokens.map((token) => (
+            <TokenItem key={token._id} token={token} onChoice={onChoiceToken} />
+          ))
+        ) : (
+          <div className="text-center text-lg text-[#2cb67d]">
+            ارزی یافت نشد
+          </div>
+        )}
       </div>
     </section>
   );
