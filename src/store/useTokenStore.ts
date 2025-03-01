@@ -1,4 +1,5 @@
 import { TokenInterFace, TokenState } from "@/types";
+import toast from "react-hot-toast";
 import { create } from "zustand";
 
 export const useTokenStore = create<TokenState>((set) => ({
@@ -10,9 +11,19 @@ export const useTokenStore = create<TokenState>((set) => ({
   updateItemData: (data) =>
     set((state) => {
       if (state.activeToken === 1) {
-        return { token1: data };
+        if (data._id !== state.token2._id) {
+          return { token1: data };
+        } else {
+          toast.error("امکان انتخاب دو ارز مشابه وجود ندارد");
+          return state;
+        }
       } else {
-        return { token2: data };
+        if (data._id !== state.token1._id) {
+          return { token2: data };
+        } else {
+          toast.error("امکان انتخاب دو ارز مشابه وجود ندارد");
+          return state;
+        }
       }
     }),
 
@@ -27,4 +38,18 @@ export const useTokenStore = create<TokenState>((set) => ({
     set((state) => ({
       pinTokens: state.pinTokens.filter((t) => t !== token),
     })),
+  swapTokens: () =>
+    set((state) => {
+      if (state.token1 && state.token2) {
+        return {
+          token1: state.token2,
+          token2: state.token1,
+        };
+      } else {
+        console.log(
+          "Each of token1 and token2 should have values before swapping."
+        );
+        return state;
+      }
+    }),
 }));
