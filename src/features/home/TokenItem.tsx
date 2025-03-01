@@ -1,12 +1,14 @@
 import { TokenInterFace } from "@/types";
 import { TiPinOutline } from "react-icons/ti";
-
+import { useTranslation } from "react-i18next";
 type TokenProps = {
   token: TokenInterFace;
   onChoice: (value: TokenInterFace) => void;
 };
 
 const TokenItem = ({ token, onChoice }: TokenProps) => {
+  const { t } = useTranslation();
+
   return (
     <div
       className="flex items-center justify-between mb-2"
@@ -21,7 +23,7 @@ const TokenItem = ({ token, onChoice }: TokenProps) => {
           loading="lazy"
         />
         <div className="">
-          <h3 className="font-semibold">{token.name}</h3>
+          <h3 className="font-semibold">{t(token.name)}</h3>
           <span className="text-sm text-zinc-500">{token.symbol}</span>
         </div>
       </div>
