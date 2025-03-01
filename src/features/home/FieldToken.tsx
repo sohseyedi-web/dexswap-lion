@@ -4,10 +4,12 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import TokenListBox from "./TokenListBox";
 import { useState } from "react";
 import { useTokenStore } from "@/store/useTokenStore";
+import { useTranslation } from "react-i18next";
 
 const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
   const [isOpen, setIsOpen] = useState(false);
   const { setActiveToken } = useTokenStore();
+  const { t } = useTranslation();
 
   const onOpen = () => {
     setActiveToken(number === 1 ? 1 : 2);
@@ -28,13 +30,13 @@ const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
           className="md:h-[50px] h-[40px] lg:w-[45%] w-[60%] bg-black rounded-2xl md:mb-0 mb-3 cursor-pointer px-2 flex items-center justify-between"
         >
           {token?._id ? (
-            <div className="flex items-center gap-x-2 mr-1">
+            <div className="flex items-center justify-between w-full">
               <img
                 src={token.img}
-                alt={token.name}
+                alt={t(token.name)}
                 className="w-6 h-6 object-cover"
               />
-              <span>{token.name}</span>
+              <span>{t(token.name)}</span>
               <RiArrowDownSLine size={25} />
             </div>
           ) : (
