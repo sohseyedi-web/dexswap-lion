@@ -9,4 +9,5 @@ export type TokenState = {
   setActiveToken: (item: number) => void;
   addPinToken: (token: TokenInterFace) => void;
   removePinToken: (token: TokenInterFace) => void;
+  swapTokens: () => void;
 };
