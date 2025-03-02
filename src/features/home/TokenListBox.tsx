@@ -11,10 +11,12 @@ const TokenListBox = ({ onClose }: { onClose: () => void }) => {
   const { updateItemData, setTokenPrice } = useTokenStore();
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loadingTokens, setLoadingTokens] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   const onChoiceToken = async (value: TokenInterFace) => {
-    setLoading(true)
+    setLoadingTokens((prev) => ({ ...prev, [value._id]: true }));
     try {
       updateItemData(value);
       const data = await getPriceToken(value?.address);
@@ -22,7 +24,7 @@ const TokenListBox = ({ onClose }: { onClose: () => void }) => {
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);
+      setLoadingTokens((prev) => ({ ...prev, [value._id]: false }));
       onClose();
     }
   };
@@ -54,7 +56,12 @@ const TokenListBox = ({ onClose }: { onClose: () => void }) => {
       <div className="h-[200px] overflow-y-auto scroll">
         {filterTokens?.length ? (
           filterTokens.map((token) => (
-            <TokenItem key={token._id} token={token} loading={loading} onChoice={onChoiceToken} />
+            <TokenItem
+              key={token._id}
+              token={token}
+              loading={!!loadingTokens[token._id]}
+              onChoice={onChoiceToken}
+            />
           ))
         ) : (
           <div className="text-center text-lg text-[#2cb67d]">
