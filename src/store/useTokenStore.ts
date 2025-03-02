@@ -1,4 +1,4 @@
-import { TokenInterFace, TokenState } from "@/types";
+import { TokenInterFace, TokenPriceInterFace, TokenState } from "@/types";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 
@@ -6,6 +6,8 @@ export const useTokenStore = create<TokenState>((set) => ({
   activeToken: 1,
   token1: {} as TokenInterFace,
   token2: {} as TokenInterFace,
+  token1Price: {} as TokenPriceInterFace,
+  token2Price: {} as TokenPriceInterFace,
   pinTokens: [],
 
   updateItemData: (data) =>
@@ -24,6 +26,14 @@ export const useTokenStore = create<TokenState>((set) => ({
           toast.error("امکان انتخاب دو ارز مشابه وجود ندارد");
           return state;
         }
+      }
+    }),
+  setTokenPrice: (data) =>
+    set((state) => {
+      if (state.activeToken === 1) {
+        return { token1Price: data };
+      } else {
+        return { token2Price: data };
       }
     }),
 
