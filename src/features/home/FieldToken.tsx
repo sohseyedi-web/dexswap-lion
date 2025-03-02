@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useTokenStore } from "@/store/useTokenStore";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
+import TokenPriceContent from "./TokenPriceContent";
 
 const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,18 +70,7 @@ const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
           className="w-full md:text-lg text-base md:h-[50px] h-[40px] rounded-2xl bg-transparent outline-none border border-zinc-700 px-3"
         />
       </div>
-      <p
-        className={`${
-          token?._id ? "visible" : "invisible"
-        } text-sm text-zinc-400 transition-all`}
-      >
-        قیمت :{" "}
-        <span className="font-semibold text-[#2cb67d] md:ml-2">10.2 $ </span>{" "}
-        معادل{" "}
-        <span className="font-semibold text-[#2cb67d] md:mr-2">
-          90/000 تومان
-        </span>
-      </p>
+      <TokenPriceContent isToken={token?._id} address={token?.address}/>
       <ModalWrapper
         title="لیست ارز ها"
         isOpen={isOpen}
