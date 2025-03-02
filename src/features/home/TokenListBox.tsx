@@ -5,15 +5,26 @@ import { useState } from "react";
 import { TokenInterFace } from "@/types";
 import { useTranslation } from "react-i18next";
 import tokens from "@/constant/tokenList";
+import { getPriceToken } from "@/service/tokenService";
 
 const TokenListBox = ({ onClose }: { onClose: () => void }) => {
-  const { updateItemData } = useTokenStore();
+  const { updateItemData, setTokenPrice } = useTokenStore();
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const onChoiceToken = (value: TokenInterFace) => {
-    updateItemData(value);
-    onClose();
+  const onChoiceToken = async (value: TokenInterFace) => {
+    setLoading(true)
+    try {
+      updateItemData(value);
+      const data = await getPriceToken(value?.address);
+      setTokenPrice(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+      onClose();
+    }
   };
 
   const filterTokens = tokens.filter((token) => {
@@ -43,7 +54,7 @@ const TokenListBox = ({ onClose }: { onClose: () => void }) => {
       <div className="h-[200px] overflow-y-auto scroll">
         {filterTokens?.length ? (
           filterTokens.map((token) => (
-            <TokenItem key={token._id} token={token} onChoice={onChoiceToken} />
+            <TokenItem key={token._id} token={token} loading={loading} onChoice={onChoiceToken} />
           ))
         ) : (
           <div className="text-center text-lg text-[#2cb67d]">
