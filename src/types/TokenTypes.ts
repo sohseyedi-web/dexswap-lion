@@ -20,6 +20,6 @@ export interface TokenPriceInterFace {
     symbol: string;
     address: string;
   };
-  dayPercentChange: string;
-  tokenAddress : string
+  usdPrice24hrPercentChange: string;
+  tokenAddress: string;
 }
