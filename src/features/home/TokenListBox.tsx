@@ -8,7 +8,7 @@ import tokens from "@/constant/tokenList";
 import { getPriceToken } from "@/service/tokenService";
 
 const TokenListBox = ({ onClose }: { onClose: () => void }) => {
-  const { updateItemData, setTokenPrice,selectedChain } = useTokenStore();
+  const { updateItemData, setTokenPrice, selectedChain } = useTokenStore();
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [loadingTokens, setLoadingTokens] = useState<{
@@ -29,12 +29,14 @@ const TokenListBox = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
-  const filterTokens = tokens.filter((token) => {
-    const translatedName = t(token.name);
-    const searchLower = search.toLowerCase();
+  const filterTokens = tokens
+    .filter((token) => token.chain === selectedChain)
+    .filter((token) => {
+      const translatedName = t(token.name);
+      const searchLower = search.toLowerCase();
 
-    return translatedName.includes(searchLower);
-  });
+      return translatedName.includes(searchLower);
+    });
 
   return (
     <section className="space-y-4">
