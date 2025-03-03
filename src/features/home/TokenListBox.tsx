@@ -8,7 +8,7 @@ import tokens from "@/constant/tokenList";
 import { getPriceToken } from "@/service/tokenService";
 
 const TokenListBox = ({ onClose }: { onClose: () => void }) => {
-  const { updateItemData, setTokenPrice } = useTokenStore();
+  const { updateItemData, setTokenPrice,selectedChain } = useTokenStore();
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [loadingTokens, setLoadingTokens] = useState<{
@@ -19,7 +19,7 @@ const TokenListBox = ({ onClose }: { onClose: () => void }) => {
     setLoadingTokens((prev) => ({ ...prev, [value._id]: true }));
     try {
       updateItemData(value);
-      const data = await getPriceToken(value?.address);
+      const data = await getPriceToken(value?.address, selectedChain);
       setTokenPrice(data);
     } catch (error) {
       console.log(error);
