@@ -3,12 +3,13 @@ import { SiEthereum, SiBinance } from "react-icons/si";
 import ButtonAction from "@/ui/ButtonAction";
 import { motion } from "framer-motion";
 import { useTokenStore } from "@/store/useTokenStore";
+import toast from "react-hot-toast";
 
-const options = [
+const options: { icon: JSX.Element; name: string; chain: "eth" | "bsc" }[] = [
   {
     icon: <SiBinance size={23} />,
     name: "بی ان بی",
-    chain: "bnb",
+    chain: "bsc",
   },
   {
     icon: <SiEthereum size={23} />,
@@ -19,23 +20,27 @@ const options = [
 
 export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("اتریوم");
-  const { setChain } = useTokenStore();
+  const { setChain, selectedChain } = useTokenStore();
+
+  const selected =
+    options.find((opt) => opt.chain === selectedChain)?.name || options[1].name;
+
+  const onChangeChain = (value: "eth" | "bsc") => {
+    setChain(value);
+    setIsOpen(false);
+    toast.success("شبکه تغییر کرد");
+  };
 
   return (
-    <div
-      className="relative lg:w-[150px] w-[45px]"
-      onBlur={() => setIsOpen(false)}
-      tabIndex={0}
-    >
+    <div className="relative lg:w-[150px] w-[45px]">
       <ButtonAction
         loading={false}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full lg:h-[50px] h-[45px] bg-transparent text-[#2cb67d]  border-zinc-800 flex items-center justify-center"
+        className="w-full lg:h-[50px] h-[45px] bg-transparent text-[#2cb67d] border-zinc-800 flex items-center justify-center"
         child={
           <div className="flex items-center justify-between px-2">
             <div className="flex items-center gap-x-2">
-              {selected === "اتریوم" ? (
+              {selectedChain === "eth" ? (
                 <SiEthereum size={23} />
               ) : (
                 <SiBinance size={23} />
@@ -60,13 +65,9 @@ export default function Dropdown() {
           <li
             key={option.name}
             className="px-4 py-2 cursor-pointer hover:bg-zinc-800 flex items-center justify-center gap-x-2"
-            onClick={() => {
-              setSelected(option.name);
-              setTimeout(() => setIsOpen(false), 150);
-              setChain(option.chain);
-            }}
+            onClick={() => onChangeChain(option.chain)}
           >
-            <span className="">{option.icon}</span>
+            <span>{option.icon}</span>
             <span className="lg:block hidden">{option.name}</span>
           </li>
         ))}
