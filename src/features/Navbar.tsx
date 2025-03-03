@@ -5,6 +5,7 @@ import { RiUserLine, RiArrowRightWideFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useResponsiveStore } from "@/store/useResponsive";
 import { Customlink } from "@/ui/CustomLink";
+import Dropdown from "./chain/DropDownChain";
 
 const Navbar = () => {
   const { setActive } = useResponsiveStore();
@@ -16,7 +17,7 @@ const Navbar = () => {
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed w-full top-0 md:p-6 p-4 right-0 flex items-center justify-between"
+      className="absolute w-full md:p-6 p-4  flex items-center justify-between"
       dir="rtl"
     >
       <div className="flex items-center">
@@ -33,16 +34,19 @@ const Navbar = () => {
           <Customlink name="پشتیبانی" to="/c" />
         </div>
       </div>
-      <ButtonAction
-        className="w-[180px] h-[50px] md:block hidden"
-        child="اتصال به کیف پول"
-        loading={false}
-      />
-      <ButtonAction
-        className="w-[45px] h-[45px] md:hidden flex items-center justify-center"
-        child={isLogin ? <RiUserLine size={30} /> : <TbWallet size={30} />}
-        loading={false}
-      />
+      <div className="flex items-center gap-x-2 z-10">
+        <Dropdown/>
+        <ButtonAction
+          className="w-[180px] h-[50px] md:block hidden"
+          child="اتصال به کیف پول"
+          loading={false}
+        />
+        <ButtonAction
+          className="w-[45px] h-[45px] md:hidden flex items-center justify-center"
+          child={isLogin ? <RiUserLine size={30} /> : <TbWallet size={30} />}
+          loading={false}
+        />
+      </div>
     </motion.nav>
   );
 };
