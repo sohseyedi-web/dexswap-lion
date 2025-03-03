@@ -9,6 +9,7 @@ export const useTokenStore = create<TokenState>((set) => ({
   token1Price: {} as TokenPriceInterFace,
   token2Price: {} as TokenPriceInterFace,
   pinTokens: [],
+  selectedChain: "eth",
 
   updateItemData: (data) =>
     set((state) => {
@@ -48,6 +49,7 @@ export const useTokenStore = create<TokenState>((set) => ({
     set((state) => ({
       pinTokens: state.pinTokens.filter((t) => t !== token),
     })),
+
   swapTokens: () =>
     set((state) => {
       if (state.token1 && state.token2) {
@@ -62,4 +64,9 @@ export const useTokenStore = create<TokenState>((set) => ({
         return state;
       }
     }),
+
+  setChain: (chain) => set({ selectedChain: chain }),
+
+  clearTokens: () =>
+    set({ token1: {} as TokenInterFace, token2: {} as TokenInterFace }),
 }));
