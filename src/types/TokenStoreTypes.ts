@@ -13,4 +13,7 @@ export type TokenState = {
   addPinToken: (token: TokenInterFace) => void;
   removePinToken: (token: TokenInterFace) => void;
   swapTokens: () => void;
+  selectedChain: string;
+  clearTokens: () => void;
+  setChain: (data: string) => void;
 };
