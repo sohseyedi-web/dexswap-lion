@@ -70,7 +70,7 @@ const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
           className="w-full md:text-lg text-base md:h-[50px] h-[40px] rounded-2xl bg-transparent outline-none border border-zinc-700 px-3"
         />
       </div>
-      <TokenPriceContent isToken={token?._id} address={token?.address}/>
+      <TokenPriceContent token={token}/>
       <ModalWrapper
         title="لیست ارز ها"
         isOpen={isOpen}
