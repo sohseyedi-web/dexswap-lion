@@ -6,11 +6,18 @@ type ButtonActionTypes = {
   child: ReactNode;
   loading: boolean;
   className?: ClassValue;
+  onClick?: () => void;
 };
 
-const ButtonAction = ({ child, loading, className }: ButtonActionTypes) => {
+const ButtonAction = ({
+  child,
+  loading,
+  className,
+  onClick,
+}: ButtonActionTypes) => {
   return (
     <button
+      onClick={onClick}
       className={cn(
         " bg-[#2cb67d] text-lg font-semibold text-zinc-800 hover:text-[#2cb67d] hover:bg-transparent transition-all duration-300 border-2 border-[#2cb67d] rounded-2xl",
         className
