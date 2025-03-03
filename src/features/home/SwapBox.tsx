@@ -6,7 +6,7 @@ import FieldToken from "./FieldToken";
 import { useTokenStore } from "@/store/useTokenStore";
 
 const SwapBox = () => {
-  const { token1, token2 } = useTokenStore();
+  const { token1, token2, clearTokens } = useTokenStore();
 
   return (
     <motion.div
@@ -23,6 +23,7 @@ const SwapBox = () => {
             className="cursor-pointer text-zinc-300 hover:text-[#2cb67d] rotate-0 hover:rotate-180 transition-all duration-300"
           />
           <TbRefresh
+            onClick={clearTokens}
             size={23}
             className="cursor-pointer text-zinc-300 hover:text-[#2cb67d] rotate-0 hover:rotate-180 transition-all duration-300"
           />
