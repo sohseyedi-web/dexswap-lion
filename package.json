@@ -16,6 +16,7 @@
     "framer-motion": "^12.4.7",
     "i18next": "^24.2.2",
     "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.5.2",
     "react-i18next": "^15.4.1",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@types/node": "^22.13.5",
     "@types/react": "^18.0.28",
+    "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
