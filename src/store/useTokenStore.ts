@@ -10,6 +10,7 @@ export const useTokenStore = create<TokenState>((set) => ({
   token2Price: {} as TokenPriceInterFace,
   pinTokens: [],
   selectedChain: "eth",
+  toman: "",
 
   updateItemData: (data) =>
     set((state) => {
@@ -69,4 +70,5 @@ export const useTokenStore = create<TokenState>((set) => ({
 
   clearTokens: () =>
     set({ token1: {} as TokenInterFace, token2: {} as TokenInterFace }),
+  addTomanPrice: (price) => set({ toman: price }),
 }));
