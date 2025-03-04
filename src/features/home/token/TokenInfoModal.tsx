@@ -43,11 +43,11 @@ const TokenInfoModal = ({ showToken, chain }: TokenInfoModalType) => {
         value={chain === "eth" ? "اتریوم" : "بایننس اسمارت چین"}
       />
       <InfoRow
-        label="قیمت به دلار:"
+        label="قیمت هر واحد به دلار:"
         value={`${formatPrice(showToken?.usdPrice)} $`}
       />
       <InfoRow
-        label="قیمت به تومان:"
+        label="قیمت هر واحد به تومان:"
         value={`${formatPrice(
           showToken?.usdPrice * Number(toman.slice(0, -1))
         )} تومان`}
