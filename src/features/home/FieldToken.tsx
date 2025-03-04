@@ -24,6 +24,13 @@ const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
     toast.success("ارز ها جا به جا شدند");
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    if (/^\d*\.?\d*$/.test(inputValue)) {
+      setValue(inputValue);
+    }
+  };
+
   return (
     <section className="p-3 rounded-2xl border border-zinc-800" dir="rtl">
       <div className="flex items-center justify-between">
@@ -68,9 +75,12 @@ const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
         <input
           type="text"
           value={value}
+          onChange={handleInputChange}
+          readOnly={number == 2}
           placeholder="0"
-          onChange={(e) => setValue(e.target.value)}
-          className="w-full md:text-lg text-base md:h-[50px] h-[40px] rounded-2xl bg-transparent outline-none border border-zinc-700 px-3"
+          className={`${
+            number === 2 ? "opacity-85" : "opacity-100"
+          } w-full md:text-lg text-base md:h-[50px] h-[40px] rounded-2xl bg-transparent outline-none border border-zinc-700 px-3`}
         />
       </div>
       <TokenPriceContent token={token} amount={value} />
