@@ -19,7 +19,7 @@ const TokenPriceContent = ({ token, amount }: TokenPriceType) => {
   const showToken =
     token?.address === token1Price?.tokenAddress ? token1Price : token2Price;
 
-  const priceWithAmount = Number(toman.slice(0, -1)) * Number(amount);
+  const priceWithAmount = Number(toman?.slice(0, -1)) * Number(amount);
 
   return (
     <div
