@@ -11,6 +11,7 @@ import TokenPriceContent from "./token/TokenPriceContent";
 const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
   const [isOpen, setIsOpen] = useState(false);
   const { setActiveToken, swapTokens, token1, token2 } = useTokenStore();
+  const [value, setValue] = useState<string>("");
   const { t } = useTranslation();
 
   const onOpen = () => {
@@ -66,11 +67,13 @@ const FieldToken = ({ title, number, token }: FieldTokenTypes) => {
         </div>
         <input
           type="text"
+          value={value}
           placeholder="0"
+          onChange={(e) => setValue(e.target.value)}
           className="w-full md:text-lg text-base md:h-[50px] h-[40px] rounded-2xl bg-transparent outline-none border border-zinc-700 px-3"
         />
       </div>
-      <TokenPriceContent token={token} />
+      <TokenPriceContent token={token} amount={value} />
       <ModalWrapper
         title="لیست ارز ها"
         isOpen={isOpen}
