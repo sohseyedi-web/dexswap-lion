@@ -43,7 +43,7 @@ const ModalWrapper = ({ isOpen, onClose, children, title }: ModalPropTypes) => {
                   onClick={onClose}
                 />
               </div>
-              <div className="my-2">{children}</div>
+              <div className="my-3">{children}</div>
             </div>
           </motion.div>
         </div>
