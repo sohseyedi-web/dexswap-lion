@@ -12,6 +12,7 @@ export interface TokenInterFace {
 
 export interface TokenPriceInterFace {
   usdPrice: number;
+  tokenName : string;
   usdPriceFormatted: string;
   nativePrice: {
     value: string;
