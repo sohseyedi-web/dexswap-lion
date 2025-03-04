@@ -7,7 +7,11 @@ import { useTranslation } from "react-i18next";
 import tokens from "@/constant/tokenList";
 import { getPriceToken } from "@/service/tokenService";
 
-const TokenListBox = ({ onClose }: { onClose: () => void }) => {
+type TokenListType = {
+  onClose: () => void;
+};
+
+const TokenListBox = ({ onClose }: TokenListType) => {
   const { updateItemData, setTokenPrice, selectedChain } = useTokenStore();
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
