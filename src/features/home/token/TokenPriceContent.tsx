@@ -6,7 +6,12 @@ import { TokenInterFace } from "@/types";
 import { formatPrice } from "@/utils/formatPrice";
 import TokenInfoModal from "./TokenInfoModal";
 
-const TokenPriceContent = ({ token }: { token: TokenInterFace }) => {
+type TokenPriceType = {
+  token: TokenInterFace;
+  amount: string;
+};
+
+const TokenPriceContent = ({ token, amount }: TokenPriceType) => {
   const { token1Price, token2Price, toman } = useTokenStore();
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -14,10 +19,12 @@ const TokenPriceContent = ({ token }: { token: TokenInterFace }) => {
   const showToken =
     token?.address === token1Price?.tokenAddress ? token1Price : token2Price;
 
+  const priceWithAmount = Number(toman.slice(0, -1)) * Number(amount);
+
   return (
     <div
       className={`${
-        token?._id ? "visible" : "invisible"
+        token?._id && amount ? "visible" : "invisible"
       } transition-all flex items-center justify-between pt-2`}
     >
       <p className="text-sm text-zinc-400 transition-all">
@@ -25,9 +32,9 @@ const TokenPriceContent = ({ token }: { token: TokenInterFace }) => {
         <span className="font-semibold text-[#2cb67d] md:ml-2 transition-all duration-200">
           {isActive
             ? `${formatPrice(
-                showToken?.usdPrice * Number(toman.slice(0, -1))
+                showToken?.usdPrice * Number(priceWithAmount)
               )} تومان`
-            : `${formatPrice(showToken?.usdPrice)} $`}
+            : `${formatPrice(showToken?.usdPrice * Number(amount))} $`}
         </span>
       </p>
       <div className="flex items-center gap-x-2 text-[#2cb67d]">
