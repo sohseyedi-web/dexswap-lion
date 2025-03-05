@@ -24,8 +24,8 @@ const TokenPriceContent = ({ token, amount }: TokenPriceType) => {
   return (
     <div
       className={`${
-        token?._id && amount ? "visible" : "invisible"
-      } transition-all flex items-center justify-between pt-2`}
+        token?._id && amount ? "visible opacity-100" : "invisible opacity-0"
+      } transition-opacity flex items-center justify-between pt-2`}
     >
       <p className="text-sm text-zinc-400 transition-all">
         قیمت :
