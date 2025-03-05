@@ -14,8 +14,6 @@ const SwapBox = () => {
 
   const onClear = useCallback(() => {
     clearTokens();
-    setTokenAmountOne("");
-    setTokenAmountTwo("");
   }, [clearTokens]);
 
   useEffect(() => {
