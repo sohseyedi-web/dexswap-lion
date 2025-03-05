@@ -2,7 +2,7 @@ import { FieldTokenTypes } from "@/types";
 import ModalWrapper from "@/ui/ModalWrapper";
 import { RiArrowDownSLine, RiArrowUpDownLine } from "react-icons/ri";
 import TokenListBox from "./token/TokenListBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTokenStore } from "@/store/useTokenStore";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
@@ -30,6 +30,14 @@ const FieldToken = ({
   };
 
   const showSwapButton = number === 1 && token1?._id && token2?._id;
+
+  useEffect(() => {
+    if (!token?._id && value) {
+      onChange({
+        target: { value: "" },
+      } as React.ChangeEvent<HTMLInputElement>);
+    }
+  }, [token]);
 
   const renderTokenContent = () => {
     if (token?._id) {
