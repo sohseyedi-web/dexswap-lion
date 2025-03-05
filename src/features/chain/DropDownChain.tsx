@@ -20,7 +20,7 @@ const options: { icon: JSX.Element; name: string; chain: "eth" | "bsc" }[] = [
 
 export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const { setChain, selectedChain } = useTokenStore();
+  const { setChain, selectedChain, clearTokens } = useTokenStore();
 
   const selected =
     options.find((opt) => opt.chain === selectedChain)?.name || options[1].name;
@@ -29,6 +29,7 @@ export default function Dropdown() {
     setChain(value);
     setIsOpen(false);
     toast.success("شبکه تغییر کرد");
+    clearTokens();
   };
 
   return (
