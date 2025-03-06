@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ButtonAction from "@/ui/ButtonAction";
-import { motion } from "framer-motion";
+import DropDownWapper from "@/ui/DropDownWapper";
 
 type Exchange = {
   id: number;
@@ -24,33 +24,20 @@ const TetherExchange = ({ select, setSelect }: TetherTypes) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative w-[150px]">
+    <DropDownWapper
+      className="w-[150px]"
+      open={isOpen}
+      options={options}
+      type="exchange"
+      onClick={setSelect}
+    >
       <ButtonAction
         loading={false}
         onClick={() => setIsOpen(!isOpen)}
         className="w-full lg:text-lg text-base lg:h-[50px] h-[45px] bg-transparent text-[#2cb67d] border-zinc-800 flex items-center justify-center"
         child={select.name}
       />
-      <motion.ul
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.2 }}
-        className={`absolute w-full text-center mt-2 border-2 bg-black rounded-2xl border-zinc-800 overflow-hidden ${
-          isOpen ? "block" : "hidden"
-        }`}
-      >
-        {options.map((option) => (
-          <li
-            key={option.id}
-            className="px-4 py-2 cursor-pointer hover:bg-zinc-800 flex items-center justify-center gap-x-2"
-            onClick={() => setSelect(option)}
-          >
-            {option.name}
-          </li>
-        ))}
-      </motion.ul>
-    </div>
+    </DropDownWapper>
   );
 };
 
