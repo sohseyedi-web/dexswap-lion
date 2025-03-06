@@ -17,7 +17,7 @@ const Navbar = () => {
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="absolute w-full md:p-6 p-4  flex items-center justify-between"
+      className="w-full md:p-6 p-4  flex items-center justify-between"
       dir="rtl"
     >
       <div className="flex items-center">
