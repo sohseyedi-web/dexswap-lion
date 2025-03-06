@@ -24,7 +24,7 @@ const TetherExchange = ({ select, setSelect }: TetherTypes) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <DropDownWapper
+    <DropDownWapper<Exchange>
       className="w-[150px]"
       open={isOpen}
       options={options}
