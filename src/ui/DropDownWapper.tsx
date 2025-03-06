@@ -1,10 +1,11 @@
 import cn from "@/utils/cn";
 import { ClassValue } from "clsx";
 import { motion } from "framer-motion";
+import React from "react";
 
-type DropDownTypes = {
+type DropDownTypes<T> = {
   open: boolean;
-  onClick: (value: any) => void;
+  onClick: (value: T) => void;
   type: string;
   children: React.ReactNode;
   className: ClassValue;
@@ -16,14 +17,14 @@ type DropDownTypes = {
   }[];
 };
 
-const DropDownWapper = ({
+const DropDownWapper = <T,>({
   open,
   options,
   onClick,
   type,
   children,
   className,
-}: DropDownTypes) => {
+}: DropDownTypes<T>) => {
   return (
     <div className={cn(`relative`, className)}>
       {children}
@@ -40,7 +41,9 @@ const DropDownWapper = ({
           <li
             key={option.id || option.chain}
             className="px-4 py-2 cursor-pointer hover:bg-zinc-800 flex items-center justify-center gap-x-2"
-            onClick={() => onClick(type === "chain" ? option.chain : option)}
+            onClick={() =>
+              onClick(type === "chain" ? (option.chain as T) : (option as T))
+            }
           >
             {type === "chain" ? (
               <>
