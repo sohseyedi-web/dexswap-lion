@@ -29,13 +29,13 @@ const Navbar = () => {
         <SiRobotframework size={38} className="text-[#2cb67d] ml-10" />
         <div className="items-center gap-x-7 md:flex hidden">
           <Customlink name="صفحه اصلی" to="/" />
-          <Customlink name="توکن ها" to="/a" />
-          <Customlink name="ابزار ها" to="/b" />
-          <Customlink name="پشتیبانی" to="/c" />
+          <Customlink name="توکن ها" to="/lists" />
+          <Customlink name="قیمت تتر" to="/tether-price" />
+          <Customlink name="پشتیبانی" to="/support" />
         </div>
       </div>
       <div className="flex items-center gap-x-2 z-10">
-        <Dropdown/>
+        <Dropdown />
         <ButtonAction
           className="w-[180px] h-[50px] md:block hidden"
           child="اتصال به کیف پول"

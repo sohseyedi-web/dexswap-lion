@@ -17,13 +17,13 @@ const Sidebar = () => {
       >
         <div className="flex items-center gap-x-3">
           <SiRobotframework size={38} className="text-[#2cb67d]" />
-          <h6 className="text-2xl font-semibold">سو سواپ</h6>
+          <h6 className="text-2xl font-semibold">لایون سواپ</h6>
         </div>
         <ul className="flex flex-col space-y-7 pt-7">
-          <Customlink name="صفحه اصلی" to="/"/>
-          <Customlink name="توکن ها" to="/a"/>
-          <Customlink name="ابزار ها" to="/b"/>
-          <Customlink name="پشتیبانی" to="/c"/>
+          <Customlink name="صفحه اصلی" to="/" />
+          <Customlink name="توکن ها" to="/lists" />
+          <Customlink name="قیمت تتر" to="/tether-price" />
+          <Customlink name="پشتیبانی" to="/support" />
         </ul>
       </aside>
     </>
