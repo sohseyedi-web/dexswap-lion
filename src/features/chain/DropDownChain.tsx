@@ -8,7 +8,7 @@ import DropDownWapper from "@/ui/DropDownWapper";
 type OptionsType = {
   icon: JSX.Element;
   name: string;
-  chain: "eth" | "bsc";
+  chain: "bsc" | "eth";
   id: number;
 };
 
