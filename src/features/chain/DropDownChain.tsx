@@ -5,20 +5,29 @@ import { useTokenStore } from "@/store/useTokenStore";
 import toast from "react-hot-toast";
 import DropDownWapper from "@/ui/DropDownWapper";
 
-const options: { icon: JSX.Element; name: string; chain: "eth" | "bsc" }[] = [
+type OptionsType = {
+  icon: JSX.Element;
+  name: string;
+  chain: "eth" | "bsc";
+  id: number;
+};
+
+const options: OptionsType[] = [
   {
     icon: <SiBinance size={23} />,
     name: "بی ان بی",
     chain: "bsc",
+    id: 1,
   },
   {
     icon: <SiEthereum size={23} />,
     name: "اتریوم",
     chain: "eth",
+    id: 2,
   },
 ];
 
-export default function Dropdown() {
+const DropChain = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { setChain, selectedChain, clearTokens } = useTokenStore();
 
@@ -33,7 +42,7 @@ export default function Dropdown() {
   };
 
   return (
-    <DropDownWapper
+    <DropDownWapper<"eth" | "bsc">
       className="lg:w-[150px] w-[45px]"
       open={isOpen}
       options={options}
@@ -61,4 +70,6 @@ export default function Dropdown() {
       />
     </DropDownWapper>
   );
-}
+};
+
+export default DropChain;
