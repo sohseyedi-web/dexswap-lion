@@ -48,9 +48,7 @@ const TokenInfoModal = ({ showToken, chain }: TokenInfoModalType) => {
       />
       <InfoRow
         label="قیمت هر واحد به تومان:"
-        value={`${formatPrice(
-          showToken?.usdPrice * Number(toman.slice(0, -1))
-        )} تومان`}
+        value={`${formatPrice(showToken?.usdPrice * toman)} تومان`}
       />
       <InfoRow
         label="تغییرات ۲۴ ساعت:"
