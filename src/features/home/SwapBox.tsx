@@ -1,11 +1,11 @@
 import { RiSettings5Fill } from "react-icons/ri";
 import { TbRefresh } from "react-icons/tb";
-import { motion } from "framer-motion";
 import ButtonAction from "@/ui/ButtonAction";
 import FieldToken from "./FieldToken";
 import { useTokenStore } from "@/store/useTokenStore";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import TokenPriceContent from "./token/TokenPriceContent";
+import MotionBox from "@/ui/MotionBox";
 
 const SwapBox = () => {
   const { token1, token2, clearTokens, token1Price, token2Price } = useTokenStore();
@@ -35,17 +35,10 @@ const SwapBox = () => {
     setTokenAmountTwo(e.target.value);
   }, []);
 
-  const motionProps = useMemo(() => ({
-    initial: { opacity: 0, scale: 0.9 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.3 }
-  }), []);
+
 
   return (
-    <motion.div
-      {...motionProps}
-      className="lg:w-[33%] md:w-[60%] space-y-4 md:mt-0 mt-10 w-[90%] p-5 border border-zinc-800 rounded-2xl bg-[#212121] hover:shadow-xl transition-all duration-300"
-    >
+    <MotionBox>
       <header className="flex items-center justify-between" dir="rtl">
         <h3 className="text-xl text-[#2cb67d] font-semibold">مبادله ارز</h3>
         <div className="flex items-center gap-x-3">
@@ -85,7 +78,7 @@ const SwapBox = () => {
           child="انجام معامله"
         />
       </form>
-    </motion.div>
+    </MotionBox>
   );
 };
 
