@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Sidebar from "./features/Sidebar";
 import { useTokenStore } from "./store/useTokenStore";
 import { getUsdtPrice } from "./service/tokenService";
+import Support from "./pages/Support";
 
 function App() {
   const { updateMedia } = useResponsiveStore();
@@ -33,6 +34,7 @@ function App() {
       <Sidebar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/support" element={<Support />} />
       </Routes>
     </BrowserRouter>
   );
