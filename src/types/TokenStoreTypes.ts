@@ -16,6 +16,6 @@ export type TokenState = {
   selectedChain: "eth" | "bsc";
   clearTokens: () => void;
   setChain: (chain: "eth" | "bsc") => void;
-  addTomanPrice: (price: string) => void;
-  toman: string;
+  addTomanPrice: (price: number) => void;
+  toman: number;
 };

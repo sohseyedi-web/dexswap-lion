@@ -10,7 +10,7 @@ export const useTokenStore = create<TokenState>((set) => ({
   token2Price: {} as TokenPriceInterFace,
   pinTokens: [],
   selectedChain: "eth",
-  toman: "",
+  toman: 0,
 
   updateItemData: (data) =>
     set((state) => {
