@@ -10,7 +10,7 @@ type DropDownTypes<T> = {
   children: React.ReactNode;
   className: ClassValue;
   options: {
-    id?: number;
+    id: number;
     icon?: JSX.Element;
     name: string;
     chain?: "eth" | "bsc";
@@ -39,7 +39,7 @@ const DropDownWapper = <T,>({
       >
         {options.map((option) => (
           <li
-            key={option.id || option.chain}
+            key={option.id}
             className="px-4 py-2 cursor-pointer hover:bg-zinc-800 flex items-center justify-center gap-x-2"
             onClick={() =>
               onClick(type === "chain" ? (option.chain as T) : (option as T))
