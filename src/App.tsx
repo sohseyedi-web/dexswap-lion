@@ -7,6 +7,7 @@ import Sidebar from "./features/Sidebar";
 import { useTokenStore } from "./store/useTokenStore";
 import { getUsdtPrice } from "./service/tokenService";
 import Support from "./pages/Support";
+import Tether from "./pages/Tether";
 
 function App() {
   const { updateMedia } = useResponsiveStore();
@@ -35,6 +36,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/tether-price" element={<Tether />} />
       </Routes>
     </BrowserRouter>
   );
