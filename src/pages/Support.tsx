@@ -29,7 +29,7 @@ const Support = () => {
   };
 
   return (
-    <section className="flex items-center justify-center h-screen">
+    <section className="flex items-center justify-center h-[80vh]">
       <MotionBox>
         <header className="flex items-center justify-between">
           <h3 className="text-xl text-[#2cb67d] font-semibold">پشتیبانی</h3>
