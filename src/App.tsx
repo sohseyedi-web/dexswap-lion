@@ -5,7 +5,7 @@ import { useResponsiveStore } from "./store/useResponsive";
 import { useEffect } from "react";
 import Sidebar from "./features/Sidebar";
 import { useTokenStore } from "./store/useTokenStore";
-import { getTOKENIRT } from "./service/tokenService";
+import { getUsdtPrice } from "./service/tokenService";
 
 function App() {
   const { updateMedia } = useResponsiveStore();
@@ -17,8 +17,8 @@ function App() {
   }, [updateMedia]);
 
   const fetchTokenPrice = async () => {
-    const toman = await getTOKENIRT("USDTIRT");
-    addTomanPrice(toman?.lastTradePrice);
+    const toman = await getUsdtPrice();
+    addTomanPrice(toman?.USDT?.price);
   };
 
   useEffect(() => {
