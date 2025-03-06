@@ -1,6 +1,7 @@
 import ButtonAction from "@/ui/ButtonAction";
 import MotionBox from "@/ui/MotionBox";
 import { useState } from "react";
+import { TbRefresh } from "react-icons/tb";
 
 const Support = () => {
   const [supportData, setSupportData] = useState({
@@ -9,10 +10,17 @@ const Support = () => {
     message: "",
   });
 
+  const clearField = () => {
+    setSupportData({
+      email: "",
+      subject: "",
+      message: "",
+    });
+  };
+
   const onChangeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    e.preventDefault();
     const { name, value } = e.target;
     setSupportData((prev) => ({
       ...prev,
@@ -21,36 +29,48 @@ const Support = () => {
   };
 
   return (
-    <MotionBox>
-      <form className="space-y-4" dir="rtl">
-        <input
-          type="email"
-          value={supportData.email}
-          onChange={onChangeHandler}
-          className="w-full h-[45px] rounded-2xl bg-transparent border border-zinc-700 px-3 outline-none transition-all"
-          placeholder="ایمیل خود را وارد کنید"
-        />
-        <input
-          type="text"
-          value={supportData.subject}
-          onChange={onChangeHandler}
-          className="w-full h-[45px] rounded-2xl bg-transparent border border-zinc-700 px-3 outline-none transition-all"
-          placeholder="موضوع درخواست رو بنویسید"
-        />
-
-        <textarea
-          value={supportData.message}
-          onChange={onChangeHandler}
-          className="w-full h-[140px]  rounded-2xl bg-transparent border border-zinc-700 p-3 outline-none transition-all resize-none"
-          placeholder="پیام خود را وارد کنید"
-        />
-        <ButtonAction
-          child="ارسال درخواست"
-          loading={false}
-          className="w-full h-[45px]"
-        />
-      </form>
-    </MotionBox>
+    <section className="flex items-center justify-center h-screen">
+      <MotionBox>
+        <header className="flex items-center justify-between">
+          <h3 className="text-xl text-[#2cb67d] font-semibold">پشتیبانی</h3>
+          <TbRefresh
+            onClick={clearField}
+            size={23}
+            className="cursor-pointer text-zinc-300 hover:text-[#2cb67d] rotate-0 hover:rotate-180 transition-all duration-300"
+          />
+        </header>
+        <form className="space-y-4">
+          <input
+            type="email"
+            name="email"
+            value={supportData.email}
+            onChange={onChangeHandler}
+            className="w-full md:h-[50px] h-[40px] rounded-2xl bg-transparent border border-zinc-700 px-3 outline-none transition-all"
+            placeholder="ایمیل خود را وارد کنید"
+          />
+          <input
+            type="text"
+            name="subject"
+            value={supportData.subject}
+            onChange={onChangeHandler}
+            className="w-full md:h-[50px] h-[40px] rounded-2xl bg-transparent border border-zinc-700 px-3 outline-none transition-all"
+            placeholder="موضوع درخواست رو بنویسید"
+          />
+          <textarea
+            name="message"
+            value={supportData.message}
+            onChange={onChangeHandler}
+            className="w-full h-[140px] rounded-2xl bg-transparent border border-zinc-700 p-3 outline-none transition-all resize-none"
+            placeholder="پیام خود را وارد کنید"
+          />
+          <ButtonAction
+            child="ارسال درخواست"
+            loading={false}
+            className="w-full md:h-[55px] h-[45px]"
+          />
+        </form>
+      </MotionBox>
+    </section>
   );
 };
 
