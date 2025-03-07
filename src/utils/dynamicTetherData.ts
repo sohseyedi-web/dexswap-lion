@@ -30,50 +30,37 @@ export const dynamicTetherData = (
 
     case "اوکی اکسچنج": {
       const okData = data as OKData;
+      const diff = ((okData.high_24h - okData.low_24h) / okData.low_24h) * 100;
       return {
         price: parseFloat(okData.last),
-        diff24d: "",
+        diff24d: diff.toFixed(2),
         last24hMax: okData.high_24h,
         last24hMin: okData.low_24h,
-        diff7d: "",
-        last7dMax: 0,
-        last7dMin: 0,
-        diff30d: "",
-        last30dMax: 0,
-        last30dMin: 0,
       };
     }
 
     case "اکسیر": {
       const exirData = data as ExirData;
+      const diff = ((exirData.high - exirData.low) / exirData.low) * 100;
       return {
         price: exirData.last,
-        diff24d: "",
+        diff24d: diff.toFixed(2),
         last24hMax: exirData.high,
         last24hMin: exirData.low,
-        diff7d: "",
-        last7dMax: 0,
-        last7dMin: 0,
-        diff30d: "",
-        last30dMax: 0,
-        last30dMin: 0,
       };
     }
 
     case "والکس": {
       const wallexData = data as WallexData;
       const wallexSymbol = wallexData.result.symbols["USDTTMN"];
+      const highPrice = parseFloat(wallexSymbol.stats["24h_highPrice"]);
+      const lowPrice = parseFloat(wallexSymbol.stats["24h_lowPrice"]);
+      const diff = ((highPrice - lowPrice) / lowPrice) * 100;
       return {
-        price: parseFloat(wallexSymbol.stats.lastPrice) ?? 0,
-        diff24d: "",
-        last24hMax: parseFloat(wallexSymbol.stats["24h_highPrice"]) ?? 0,
-        last24hMin: parseFloat(wallexSymbol.stats["24h_lowPrice"]) ?? 0,
-        diff7d: "",
-        last7dMax: 0,
-        last7dMin: 0,
-        diff30d: "",
-        last30dMax: 0,
-        last30dMin: 0,
+        price: parseFloat(wallexSymbol.stats.lastPrice),
+        diff24d: diff.toFixed(2),
+        last24hMax: highPrice,
+        last24hMin: lowPrice,
       };
     }
 
