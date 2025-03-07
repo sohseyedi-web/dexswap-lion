@@ -1,24 +1,28 @@
 import TetherBox from "@/features/tetherprice/TetherBox";
 import TetherExchange from "@/features/tetherprice/TetherExchange";
 import { getUsdtPrice } from "@/service/tokenService";
-import { TetherData } from "@/types";
+import { Exchange, TetherData } from "@/types";
 import Loading from "@/ui/Loading";
+import { dynamicTetherData } from "@/utils/dynamicTetherData";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumber";
 import { useEffect, useState } from "react";
 
 const Tether = () => {
   const [item, setItem] = useState<TetherData | null>(null);
   const [loading, setLoading] = useState(false);
-  const [selectedExchange, setSelectedExchange] = useState({
+  const [selectedExchange, setSelectedExchange] = useState<Exchange>({
     name: "تترلند",
     id: 1,
+    fetchFunction: getUsdtPrice,
   });
 
   const fetchTether = async () => {
     try {
       setLoading(true);
-      const tether = await getUsdtPrice();
-      setItem(tether?.USDT as TetherData);
+      const data = await selectedExchange.fetchFunction();
+      console.log(data);
+      const tether = await dynamicTetherData(data, selectedExchange.name);
+      setItem(tether);
     } catch (error) {
       console.error("Error fetching tether price:", error);
     } finally {
@@ -26,11 +30,13 @@ const Tether = () => {
     }
   };
 
+  console.log(item)
+
   useEffect(() => {
     fetchTether();
     const interval = setInterval(fetchTether, 5 * 60 * 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [selectedExchange]);
 
   return (
     <section className="max-w-7xl mx-auto mt-5 lg:px-0 px-6 pb-6" dir="rtl">
