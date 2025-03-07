@@ -8,6 +8,7 @@ import {
   getUsdtPriceWallex,
 } from "@/service/tokenService";
 import { Exchange } from "@/types";
+import toast from "react-hot-toast";
 
 type TetherTypes = {
   select: Exchange;
@@ -24,13 +25,19 @@ const options: Exchange[] = [
 const TetherExchange = ({ select, setSelect }: TetherTypes) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const onSelectExchange = (value: Exchange) => {
+    setIsOpen(false);
+    setSelect(value);
+    toast.success("صرافی تغییر کرد");
+  };
+
   return (
     <DropDownWapper<Exchange>
       className="w-[150px]"
       open={isOpen}
       options={options}
       type="exchange"
-      onClick={setSelect}
+      onClick={onSelectExchange}
     >
       <ButtonAction
         loading={false}
