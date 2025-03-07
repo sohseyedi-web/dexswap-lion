@@ -9,12 +9,12 @@ export interface TetherData {
   diff24d: string;
   last24hMax: number;
   last24hMin: number;
-  diff7d: string;
-  last7dMax: number;
-  last7dMin: number;
-  diff30d: string;
-  last30dMax: number;
-  last30dMin: number;
+  diff7d?: string;
+  last7dMax?: number;
+  last7dMin?: number;
+  diff30d?: string;
+  last30dMax?: number;
+  last30dMin?: number;
 }
 
 export interface TetherLandData {
@@ -57,7 +57,6 @@ export interface WallexData {
           lastPrice: string;
           "24h_highPrice": string;
           "24h_lowPrice": string;
-          "7d_volume": string;
         };
       };
     };
