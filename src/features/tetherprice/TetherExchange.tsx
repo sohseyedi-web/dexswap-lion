@@ -1,11 +1,13 @@
 import { useState } from "react";
 import ButtonAction from "@/ui/ButtonAction";
 import DropDownWapper from "@/ui/DropDownWapper";
-
-type Exchange = {
-  id: number;
-  name: string;
-};
+import {
+  getUsdtPrice,
+  getUsdtPriceExir,
+  getUsdtPriceOk,
+  getUsdtPriceWallex,
+} from "@/service/tokenService";
+import { Exchange } from "@/types";
 
 type TetherTypes = {
   select: Exchange;
@@ -13,11 +15,10 @@ type TetherTypes = {
 };
 
 const options: Exchange[] = [
-  { id: 1, name: "تترلند" },
-  { id: 2, name: "اوکی اکسچنج" },
-  { id: 3, name: "والکس" },
-  { id: 4, name: "نوبیتکس" },
-  { id: 5, name: "اکسیر" },
+  { id: 1, name: "تترلند", fetchFunction: getUsdtPrice },
+  { id: 2, name: "اوکی اکسچنج", fetchFunction: getUsdtPriceOk },
+  { id: 3, name: "والکس", fetchFunction: getUsdtPriceWallex },
+  { id: 5, name: "اکسیر", fetchFunction: getUsdtPriceExir },
 ];
 
 const TetherExchange = ({ select, setSelect }: TetherTypes) => {
