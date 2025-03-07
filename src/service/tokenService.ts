@@ -10,17 +10,6 @@ export async function getPriceToken(token: string, chain: string) {
   }
 }
 
-export async function getUsdtPriceNobitex() {
-  try {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_NOBITEX}/orderbook/USDTIRT`
-    );
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 export async function getUsdtPrice() {
   try {
     const { data } = await axios.get(
@@ -46,6 +35,14 @@ export async function getUsdtPriceExir() {
     const { data } = await axios.get(
       `${import.meta.env.VITE_API_EXIR}?symbol=usdt-irt`
     );
+    return data?.results?.symbols?.USDTTMN?.stats;
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function getUsdtPriceWallex() {
+  try {
+    const { data } = await axios.get(`${import.meta.env.VITE_API_WALLEX}`);
     return data;
   } catch (error) {
     console.log(error);
