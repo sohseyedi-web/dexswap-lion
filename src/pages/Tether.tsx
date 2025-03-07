@@ -20,7 +20,6 @@ const Tether = () => {
     try {
       setLoading(true);
       const data = await selectedExchange.fetchFunction();
-      console.log(data);
       const tether = await dynamicTetherData(data, selectedExchange.name);
       setItem(tether);
     } catch (error) {
@@ -29,8 +28,6 @@ const Tether = () => {
       setLoading(false);
     }
   };
-
-  console.log(item)
 
   useEffect(() => {
     fetchTether();
@@ -71,18 +68,22 @@ const Tether = () => {
             lastDayMax={item?.last24hMax ?? 0}
             lastDayMin={item?.last24hMin ?? 0}
           />
-          <TetherBox
-            day={"7"}
-            diffDay={item?.diff7d ?? ""}
-            lastDayMax={item?.last7dMax ?? 0}
-            lastDayMin={item?.last7dMin ?? 0}
-          />
-          <TetherBox
-            day={"30"}
-            diffDay={item?.diff30d ?? ""}
-            lastDayMax={item?.last30dMax ?? 0}
-            lastDayMin={item?.last30dMin ?? 0}
-          />
+          {selectedExchange.id == 1 ? (
+            <>
+              <TetherBox
+                day={"7"}
+                diffDay={item?.diff7d ?? ""}
+                lastDayMax={item?.last7dMax ?? 0}
+                lastDayMin={item?.last7dMin ?? 0}
+              />
+              <TetherBox
+                day={"30"}
+                diffDay={item?.diff30d ?? ""}
+                lastDayMax={item?.last30dMax ?? 0}
+                lastDayMin={item?.last30dMin ?? 0}
+              />
+            </>
+          ) : null}
         </div>
       )}
     </section>
