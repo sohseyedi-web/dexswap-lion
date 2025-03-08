@@ -5,44 +5,48 @@ import TokenTableRow from "./TokenTableRow";
 import { useTableStore } from "@/store/useTableStore";
 import { useTranslation } from "react-i18next";
 import Loading from "@/ui/Loading";
+import { useMemo } from "react";
 
 const TokensTable = () => {
   const { tokens, loading } = useGetTokensTable();
   const { search } = useTableStore();
   const { t } = useTranslation();
 
-  const filterTokens = tokens.filter((token) => {
-    const translatedName = t(token.name);
+  const filterTokens = useMemo(() => {
     const searchLower = search.toLowerCase();
-
-    return translatedName.includes(searchLower);
-  });
+    return tokens.filter((token) =>
+      t(token.name).toLowerCase().includes(searchLower)
+    );
+  }, [tokens, search, t]);
 
   if (loading) return <Loading className="bg-[#2cb67d]" />;
 
+  const renderTableHeader = () => (
+    <thead className="bg-zinc-900 rounded-2xl">
+      <tr className="text-zinc-400 rounded-2xl">
+        {tokenTHeads.map((header) => (
+          <th className={`border border-zinc-800 p-2`} key={header.id}>
+            {header.label}
+          </th>
+        ))}
+      </tr>
+    </thead>
+  );
+
+  const renderTableBody = () => (
+    <tbody>
+      {filterTokens.map((token: TableInterface, index: number) => (
+        <TokenTableRow key={token.id} index={index} token={token} />
+      ))}
+    </tbody>
+  );
+
   return (
-    <div className="" dir="rtl">
-      {filterTokens?.length ? (
-        <table className="w-full border-collapse  border border-zinc-700 bg-black text-right">
-          <thead className="bg-zinc-900 rounded-2xl">
-            <tr className="text-zinc-400 rounded-2xl">
-              {tokenTHeads.map((t) => (
-                <th
-                  className={`${
-                    t.id == 5 || t.id == 6 ? "hidden lg:table-cell" : null
-                  } border border-zinc-800 p-2`}
-                  key={t.id}
-                >
-                  {t.label}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filterTokens.map((token: TableInterface, index: number) => (
-              <TokenTableRow key={token.id} index={index} token={token} />
-            ))}
-          </tbody>
+    <div dir="rtl" className="w-full overflow-x-auto">
+      {filterTokens.length ? (
+        <table className="w-full min-w-[800px] border-collapse border border-zinc-700 bg-black text-right">
+          {renderTableHeader()}
+          {renderTableBody()}
         </table>
       ) : (
         <div className="text-center text-lg text-[#2cb67d] w-full">
