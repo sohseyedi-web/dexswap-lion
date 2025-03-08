@@ -1,19 +1,27 @@
+import { useTableStore } from "@/store/useTableStore";
+import { useTokenStore } from "@/store/useTokenStore";
 import { TableInterface } from "@/types";
 import { formatPrice } from "@/utils/formatPrice";
 import { toPersianNumbers } from "@/utils/toPersianNumber";
+import { useTranslation } from "react-i18next";
 
-const TokenTableRow = ({
-  token,
-  index,
-}: {
+type TokenTableRow = {
   token: TableInterface;
   index: number;
-}) => {
+};
+
+const TokenTableRow = ({ token, index }: TokenTableRow) => {
+  const { t } = useTranslation();
+  const { active } = useTableStore();
+  const { toman } = useTokenStore();
+
+  const formatPriceWithCurrency = (price: number) => {
+    const formattedPrice = formatPrice(price * (active ? toman : 1));
+    return active ? formattedPrice : `${formattedPrice}$`;
+  };
+
   return (
-    <tr
-      key={token.id}
-      className="hover:bg-slate-950 border-zinc-900 border transition-all duration-300 cursor-pointer"
-    >
+    <tr className="hover:bg-slate-950 border-zinc-900 border transition-all duration-300 cursor-pointer">
       <td className="border-zinc-900 border text-center p-2 w-12">
         {toPersianNumbers(String(index + 1))}
       </td>
@@ -24,19 +32,19 @@ const TokenTableRow = ({
           alt={token.name}
           loading="lazy"
         />
-        {token.name}
+        {t(token.name)}
       </td>
       <td className="border-zinc-900 border p-2">
         {token.symbol.toUpperCase()}
       </td>
       <td className="border-zinc-900 border text-green-600 font-bold p-2">
-        ${formatPrice(Number(token.current_price))}
+        {formatPriceWithCurrency(Number(token.current_price))}
       </td>
       <td className="border hidden lg:table-cell border-zinc-900 p-2">
-        ${formatPrice(token.high_24h)}
+        {formatPriceWithCurrency(Number(token.high_24h))}
       </td>
       <td className="border hidden lg:table-cell border-zinc-900 p-2">
-        ${formatPrice(token.low_24h)}
+        {formatPriceWithCurrency(Number(token.low_24h))}
       </td>
       <td
         className={`border border-zinc-900 p-2 font-bold ${
