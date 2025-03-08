@@ -25,7 +25,7 @@ const TokensTable = () => {
     <thead className="bg-zinc-900 rounded-2xl">
       <tr className="text-zinc-400 rounded-2xl">
         {tokenTHeads.map((header) => (
-          <th className={`border border-zinc-800 p-2`} key={header.id}>
+          <th className={`border border-zinc-800 p-2 text-center`} key={header.id}>
             {header.label}
           </th>
         ))}
@@ -44,7 +44,7 @@ const TokensTable = () => {
   return (
     <div dir="rtl" className="w-full overflow-x-auto">
       {filterTokens.length ? (
-        <table className="w-full min-w-[800px] border-collapse border border-zinc-700 bg-black text-right">
+        <table className="w-full min-w-[1280px] border-collapse border border-zinc-700 bg-black text-right">
           {renderTableHeader()}
           {renderTableBody()}
         </table>
