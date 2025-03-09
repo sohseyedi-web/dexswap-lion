@@ -32,7 +32,9 @@ const Support = () => {
     <section className="flex items-center justify-center h-[80vh]">
       <MotionBox>
         <header className="flex items-center justify-between">
-          <h3 className="text-xl text-[#2cb67d] font-semibold">پشتیبانی</h3>
+          <h3 className="lg:text-xl text-lg text-[#2cb67d] font-semibold">
+            پشتیبانی
+          </h3>
           <TbRefresh
             onClick={clearField}
             size={23}
@@ -45,7 +47,7 @@ const Support = () => {
             name="email"
             value={supportData.email}
             onChange={onChangeHandler}
-            className="w-full md:h-[50px] h-[40px] rounded-2xl bg-transparent border border-zinc-700 px-3 outline-none transition-all"
+            className="w-full md:h-[50px] h-[45px] md:text-base text-sm rounded-2xl bg-transparent border border-zinc-700 px-3 outline-none transition-all"
             placeholder="ایمیل خود را وارد کنید"
           />
           <input
@@ -53,14 +55,14 @@ const Support = () => {
             name="subject"
             value={supportData.subject}
             onChange={onChangeHandler}
-            className="w-full md:h-[50px] h-[40px] rounded-2xl bg-transparent border border-zinc-700 px-3 outline-none transition-all"
+            className="w-full md:h-[50px] h-[45px] md:text-base text-sm rounded-2xl bg-transparent border border-zinc-700 px-3 outline-none transition-all"
             placeholder="موضوع درخواست رو بنویسید"
           />
           <textarea
             name="message"
             value={supportData.message}
             onChange={onChangeHandler}
-            className="w-full h-[140px] rounded-2xl bg-transparent border border-zinc-700 p-3 outline-none transition-all resize-none"
+            className="w-full h-[140px] rounded-2xl md:text-base text-sm bg-transparent border border-zinc-700 p-3 outline-none transition-all resize-none"
             placeholder="پیام خود را وارد کنید"
           />
           <ButtonAction
