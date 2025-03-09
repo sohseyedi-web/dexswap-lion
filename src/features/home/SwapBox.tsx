@@ -74,7 +74,7 @@ const SwapBox = () => {
         </FieldToken>
         <ButtonAction
           loading={false}
-          className="w-full h-[55px]"
+          className="w-full lg:h-[55px] h-[45px]"
           child="انجام معامله"
         />
       </form>
