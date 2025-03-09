@@ -40,7 +40,7 @@ const SwapBox = () => {
   return (
     <MotionBox>
       <header className="flex items-center justify-between" dir="rtl">
-        <h3 className="text-xl text-[#2cb67d] font-semibold">مبادله ارز</h3>
+        <h3 className="lg:text-xl tex-lg text-[#2cb67d] font-semibold">مبادله ارز</h3>
         <div className="flex items-center gap-x-3">
           <RiSettings5Fill
             size={23}
