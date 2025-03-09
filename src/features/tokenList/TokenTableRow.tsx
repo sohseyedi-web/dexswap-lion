@@ -6,14 +6,15 @@ import { formatPrice } from "@/utils/formatPrice";
 import { toPersianNumbers } from "@/utils/toPersianNumber";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { useMemo } from "react";
+import { forwardRef, useMemo } from "react";
 
 type TokenTableRowProps = {
   token: TableInterface;
   index: number;
 };
 
-const TokenTableRow = ({ token, index }: TokenTableRowProps) => {
+const TokenTableRow = forwardRef<HTMLTableRowElement, TokenTableRowProps>(
+  ({ token, index }, ref) => {
   const { t } = useTranslation();
   const { active } = useTableStore();
   const { toman } = useTokenStore();
@@ -65,7 +66,7 @@ const TokenTableRow = ({ token, index }: TokenTableRowProps) => {
   );
 
   return (
-    <tr className="hover:bg-slate-950 border-zinc-900 border transition-all duration-300 cursor-pointer">
+    <tr ref={ref} className="hover:bg-slate-950 border-zinc-900 border transition-all duration-300 cursor-pointer">
       <td className="border-zinc-900 border text-center p-2 w-12">
         {toPersianNumbers(String(index + 1))}
       </td>
@@ -98,6 +99,7 @@ const TokenTableRow = ({ token, index }: TokenTableRowProps) => {
       </td>
     </tr>
   );
-};
+});
 
+TokenTableRow.displayName = 'TokenTableRow';
 export default TokenTableRow;
