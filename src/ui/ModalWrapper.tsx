@@ -1,3 +1,5 @@
+import cn from "@/utils/cn";
+import { ClassValue } from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 import { ReactNode } from "react";
 import { RiCloseLine } from "react-icons/ri";
@@ -7,9 +9,16 @@ type ModalPropTypes = {
   children: ReactNode;
   onClose: () => void;
   title: string;
+  className?: ClassValue;
 };
 
-const ModalWrapper = ({ isOpen, onClose, children, title }: ModalPropTypes) => {
+const ModalWrapper = ({
+  isOpen,
+  onClose,
+  children,
+  title,
+  className,
+}: ModalPropTypes) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -26,7 +35,10 @@ const ModalWrapper = ({ isOpen, onClose, children, title }: ModalPropTypes) => {
           />
 
           <motion.div
-            className="relative bg-[#212121] rounded-xl p-4 shadow-lg lg:w-[33%] md:w-[60%] w-[90%]"
+            className={cn(
+              "relative bg-[#212121] rounded-xl p-4 shadow-lg lg:w-[33%] md:w-[60%] w-[90%]",
+              className
+            )}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
