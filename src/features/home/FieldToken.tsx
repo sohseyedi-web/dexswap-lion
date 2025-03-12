@@ -37,7 +37,7 @@ const FieldToken = ({
         target: { value: "" },
       } as React.ChangeEvent<HTMLInputElement>);
     }
-  }, [token]);
+  }, [token,value,onChange]);
 
   const renderTokenContent = () => {
     if (token?._id) {
