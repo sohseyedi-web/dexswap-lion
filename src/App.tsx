@@ -9,6 +9,7 @@ import { getUsdtPrice } from "./service/tokenService";
 import Support from "./pages/Support";
 import Tether from "./pages/Tether";
 import TokensTable from './pages/Tokens';
+import PWAPrompt from "./ui/PWAtoast";
 
 function App() {
   const { updateMedia } = useResponsiveStore();
@@ -40,6 +41,7 @@ function App() {
         <Route path="/tether-price" element={<Tether />} />
         <Route path="/lists" element={<TokensTable />} />
       </Routes>
+      <PWAPrompt/>
     </BrowserRouter>
   );
 }
