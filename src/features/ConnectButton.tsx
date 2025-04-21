@@ -14,7 +14,7 @@ const ConnectButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const { connect, connectors, error, isPending } = useConnect({
+  const { connect, connectors, isPending } = useConnect({
     mutation: {
       onSuccess() {
         toast.success("با موفقیت به کیف پول متصل شدید");
@@ -73,13 +73,21 @@ const ConnectButton = () => {
       <div className="flex items-center gap-2">
         <CopyToClipboard text={address} onCopy={handleCopy}>
           <ButtonAction
-            className="md:w-[180px] w-[45px] md:h-[50px] h-[45px] md:block flex items-center justify-center bg-transparent hover:bg-zinc-900 text-[#2cb67d] border-zinc-800"
+            className={`md:w-[180px] ${
+              copied ? "border-zinc-600" : " border-zinc-800"
+            } w-[45px] md:h-[50px] h-[45px] md:block flex items-center justify-center bg-transparent hover:bg-zinc-900 text-[#2cb67d]`}
             loading={isPending}
             child={
               isMobile ? (
                 <div className="flex items-center justify-center gap-x-2">
-                  <span className="lg:text-base md:text-sm">{shortenAddress(address)}</span>
-                  <img src="/images/metamask.png" alt={connector?.name} className="size-6 object-cover"/>
+                  <span className="lg:text-base md:text-sm">
+                    {shortenAddress(address)}
+                  </span>
+                  <img
+                    src="/images/metamask.png"
+                    alt={connector?.name}
+                    className="size-6 object-cover"
+                  />
                 </div>
               ) : (
                 <HiWallet size={30} />
